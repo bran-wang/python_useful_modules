@@ -1,0 +1,12 @@
+2017-04-06 02:02:59,517 - root - DEBUG - logging_test: debug
+2017-04-06 02:02:59,517 - root - INFO - logging_test: info
+2017-04-06 02:02:59,517 - root - WARNING - logging_test: warning
+2017-04-06 02:02:59,517 - root - ERROR - logging_test: error
+2017-04-06 02:02:59,518 - root - CRITICAL - logging_test: critical
+2017-04-06 02:02:59,518 - root - DEBUG - logging_test: log
+2017-04-06 02:02:59,518 - __main__ - DEBUG - logging_test: debug
+2017-04-06 02:02:59,518 - __main__ - INFO - logging_test: info
+2017-04-06 02:02:59,518 - __main__ - WARNING - logging_test: warning
+2017-04-06 02:02:59,518 - __main__ - ERROR - logging_test: error
+2017-04-06 02:02:59,518 - __main__ - CRITICAL - logging_test: critical
+2017-04-06 02:02:59,518 - __main__ - DEBUG - logging_test: log
