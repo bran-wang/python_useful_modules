@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# ssh-keygen -t rsa
+# cp id_rsa.pub to remote host renamed ~/.ssh/authorized_keys
+
 echo ""
 echo "which host would you like to ssh ?"
 echo "----------------------------------------------"
