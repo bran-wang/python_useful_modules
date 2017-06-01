@@ -80,7 +80,7 @@ def get_json(url, params, encSecKey):
          "params": params,
          "encSecKey": encSecKey
     }
-    response = requests.post(url, headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data, proxies=proxies)
     print response.content
     return response.content
  
@@ -123,7 +123,10 @@ def get_all_comments(url):
         params = get_params(i+1)
         encSecKey = get_encSecKey()
         json_text = get_json(url,params,encSecKey)
-        json_dict = json.loads(json_text)
+        try:
+            json_dict = json.loads(json_text)
+        except ValueError:
+            pass
         if i == 0:
             print("共有%d条评论!" % comments_num) # 全部评论总数
         for item in json_dict['comments']:
