@@ -1,4 +1,9 @@
 #coding: utf-8
+
+'''
+直接使用Thread类实例化一个线程对象并传递一个可调用对象作为参数
+'''
+
 import threading
 
 def demo(start, end):
