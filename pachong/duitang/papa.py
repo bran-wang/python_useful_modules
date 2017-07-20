@@ -4,6 +4,8 @@
 import requests
 import urllib.parse
 import threading
+import sys
+import os
 
 #设置最大线程锁, 最多10个线程
 thread_lock = threading.BoundedSemaphore(value=10)
@@ -46,16 +48,19 @@ def pic_urls_from_pages(pages):
         pic_urls.extend(urls)
     return pic_urls
 
-def download_img(url, n):
+def download_img(url, label, label_dir, n):
     r = requests.get(url)
-    path = 'pics/' + str(n) + '.jpg'
+    #label_dir = "pics/" + label
+    #print(label_dir)
+    #os.mkdir(label_dir)
+    path = label_dir + '/' + label + str(n) + '.jpg'
     with open(path, 'wb') as f:
         f.write(r.content)
     # unlock
     thread_lock.release()
 
 
-def main(label):
+def main(label, label_dir):
     pages = pages_from_duitang(label)
     pic_urls = pic_urls_from_pages(pages)
     n = 0
@@ -64,11 +69,19 @@ def main(label):
         print("正在下载第{}张图片".format(n))
         # lock
         thread_lock.acquire()
-        t = threading.Thread(target=download_img, args=(url, n))
+        t = threading.Thread(target=download_img, args=(url, label, label_dir, n))
         t.start()
 
 
-main("校花")
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("you should input search name")
+        exit(1)
+    label = sys.argv[1]
+    label_dir = "pics/" + label
+    print(label_dir)
+    os.mkdir(label_dir)
+    main(label, label_dir)
 
 
 #url = "http://www.duitang.com/napi/blog/list/by_search/?kw=%E6%A0%A1%E8%8A%B1&start=0&limit=2"
